@@ -1,1 +1,178 @@
-# ididisg
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>線路檢測</title>
+    <link rel="stylesheet" href="/css/reset.min.css"> 
+    <link rel="stylesheet" href="/css/star.css">   
+    <style>
+        *, *:before, *:after {
+            box-sizing: border-box;
+            outline: none;
+        }
+        html, body {
+            font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", "AOS Icons", "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", 微软雅黑, STHeiti, 华文细黑, sans-serif;
+            line-height: 1;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        html {
+            font-size: 18px;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        #container {
+            line-height: 1.5;
+            flex: 1;
+        }
+        .ground_img {
+            width: 100%;
+            height: 250px;
+            background-image: url(/img/lulu_bg.png), linear-gradient(1deg, #f35d44, #f35c44 51%, #dd0f3a);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: contain;
+        }
+        footer {
+            width: 100%;
+            height: 150px;
+            background-image: url(/img/lulu_footer.png);
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: contain;
+        }
+        .lds-ellipsis {
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 10px;
+        }
+        .lds-ellipsis div {
+            position: absolute;
+            top: 2px;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: #000;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .lds-ellipsis div:nth-child(1) {
+            left: 6px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(2) {
+            left: 6px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(3) {
+            left: 17px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+        .lds-ellipsis div:nth-child(4) {
+            left: 28px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+        @keyframes lds-ellipsis1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        @keyframes lds-ellipsis2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10px, 0); }
+        }
+        @keyframes lds-ellipsis3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        @media (max-width: 640px) {
+            html {
+                font-size: 16px;
+            }
+            .ground_img {
+                height: 150px;
+            }
+            #container { 
+                flex: none;
+            }
+            footer {
+                background-image: url('/img/lulu_m_footer.png');
+                background-position: bottom;
+                height: 150px;
+                background-size: contain;
+            }
+        }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112105798-5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-112105798-5');
+    </script>
+</head>
+<body>
+    <div class="ground_img"></div>
+    <div id="container">
+        <div class="main-content">
+            <p style="font-size:2rem">线路检测页</p>
+            <p>NEETWORK SPEED TEST CENTER</p>
+            <div style="margin-top:30px;">线路测试中<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>将直接前往站点<br>请耐心等候</div>
+        </div>
+    </div>
+    <footer></footer>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/star.js"></script>
+    <script>
+        function knock(host) {
+
+            var http = new XMLHttpRequest();
+
+            http.open("GET", host, /*async*/true);
+            http.onreadystatechange = function() {
+
+                if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
+                    window.location.href = host;
+                }
+            };
+
+            try {
+                http.send(null);
+            } catch(exception) {
+                // this is expected
+            }
+
+        }
+
+        function main() {
+
+            var targets = [
+                'https://d.zhongmouluntan.com',                
+                'https://d.soya123.net',
+                'https://d.hnswjg.cn',
+                'https://d.gongciyuan.cn',
+                'https://d.dzy520.cn',
+                'https://d.sxsjsw.cn'
+            ];
+
+            for(var i = 0; i < targets.length; i++)
+                knock( targets[i]);
+
+            setTimeout(main, 3000); // retry every 3 seconds
+        }
+
+        main();
+    </script>
+</body>
+</html>
